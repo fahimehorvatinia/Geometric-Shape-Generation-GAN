@@ -43,22 +43,14 @@
 
 ## High-Level Solution
 
-### 🖥️ GAN Architecture
-
-- **Generator**:
-  - Input: Random noise.
-  - Output: Parametric representations (e.g., vertex coordinates).
-  - Goal: Generate valid parametric data for each shape class.
+### GAN Architecture:
+- **Generator**: The generator will take random noise as input and output parametric representations of shapes. For example, for a polygon, the output would be a set of coordinate pairs representing the vertices of the shape. The generator will be trained to produce valid sets of parameters that can be translated into meaningful shapes.
   
-- **Discriminator**:
-  - Input: Parametric data.
-  - Task: Validate if the generated parametric data represents a valid shape.
-  - Example: Ensure polygons have no collinear points.
+- **Discriminator**: The discriminator will take the generated parametric representation and validate whether it forms a valid geometric shape. For instance, for polygons, it will check that the vertices are not collinear and that the shape's structure adheres to its geometric properties.
 
-### 🎨 Parametric to Image Translation
+### Translation to Images:
+After generating the parametric representation, the shape will be drawn as an image using OpenCV or another visualization library. This process will allow for visual inspection of the generated shapes, but the GAN itself will operate directly on the parametric data.
 
-- Generated parametric data will be **converted into images** for visual inspection.
-- Tools: OpenCV or other image processing libraries.
 
 ---
 
