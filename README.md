@@ -37,8 +37,8 @@ The project will begin with a simple GAN implementation, and later extend to mor
 To successfully implement this project, I will need to deepen my understanding of the following:
 
 - **GAN architecture**: I am familiar with the basic structure of GANs, but I need to study how to fine-tune the generator and discriminator to handle geometric shapes effectively.
-- **Training stability**: I need to explore methods for stabilizing GAN training and avoiding issues such as mode collapse.
-- **Evaluation metrics**: I will need to study evaluation methods such as the Structural Similarity Index (SSI) and how to compare generated shapes with the ground truth shapes in a meaningful way.
+- **Training stability**: Training the GAN is difficult. I need to explore methods for stabilizing GAN training and avoiding issues such as mode collapse.
+- **Evaluation metrics**: I will need to study evaluation methods such as the Structural Similarity Index (SSI) and Mean Square Error (MSE) and how to compare generated shapes with the ground truth shapes in a meaningful way.
 
 ---
 
