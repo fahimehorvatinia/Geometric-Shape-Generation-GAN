@@ -1,82 +1,96 @@
 # Parametric Geometric Shape Generation Using GANs
 
-## 1. Introduction
+## Introduction
 
-In this project, I aim to build a Generative Adversarial Network (GAN) that generates **parametrically encoded geometric shapes**, such as polygons, circles, and stars. Instead of generating images directly, the GAN will output the **parameters** defining each shape (e.g., the coordinates of vertices for polygons), and these parameters will then be translated into images. This approach goes beyond using existing GAN architectures by focusing on generating meaningful geometric representations and validating their correctness, such as ensuring non-collinear vertices in polygons.
-
----
-
-## 2. Problem Definition
-
-The key objective of this project is to build a GAN that generates parametric representations of simple geometric shapes:
-- **Input**: Random noise and possibly class labels (in the case of a Conditional GAN).
-- **Output**: Parameters that define geometric shapes, such as:
-  - Coordinates of vertices for polygons.
-  - Radius and center coordinates for circles.
-  - Angle and length parameters for stars.
-
-The challenge is ensuring that the generated parametric representations correspond to valid shapes (e.g., the vertices of a triangle should not be collinear). The GAN will need to learn how to generate these parameters so that they form recognizable and mathematically correct geometric shapes when translated into images.
+- Goal: Build a GAN that generates **parametrically encoded geometric shapes**.
+- Shapes: Polygons, circles, stars.
+- Output: Coordinates of vertices, radii, or angular parameters instead of images.
+- Process: Convert parametric data into images using OpenCV or a similar library.
+- Focus: 
+  - Generate valid shapes (e.g., no collinear points in polygons).
+  - Ensure shapes maintain their geometric properties.
 
 ---
 
-## 3. Dataset Description
+## Problem Definition
 
-Since this project focuses on parametric generation, I will create a **synthetic dataset** of geometric shapes, encoded as lists of parameters rather than raw images. These parameters will include:
-- **Polygons**: A set of vertex coordinates.
-- **Circles**: The center point and radius.
-- **Stars**: A set of vertex coordinates with additional angular constraints.
-
-I will generate this dataset using Python's OpenCV and NumPy libraries. For each shape class, I will generate:
-- **Training Set**: A set of parametric representations (e.g., for polygons, a set of vertex coordinates).
-- **Validation Set**: A validation set to tune the model's performance.
-- **Test Set**: A test set for final evaluation.
+- Objective: GAN generates **parametric representations** of geometric shapes.
+- Inputs:
+  - Random noise.
+  - Optional class labels (for Conditional GAN).
+- Outputs:
+  - **Polygons**: Coordinates of vertices.
+  - **Circles**: Center point and radius.
+  - **Stars**: Vertex coordinates with angular constraints.
+- Key challenge: Ensure generated parameters correspond to **valid shapes**.
 
 ---
 
-## 4. High-Level Solution
+## Dataset Description
 
-### GAN Architecture:
-- **Generator**: The generator will take random noise as input and output parametric representations of shapes. For example, for a polygon, the output would be a set of coordinate pairs representing the vertices of the shape. The generator will be trained to produce valid sets of parameters that can be translated into meaningful shapes.
+- **Synthetic Dataset**: Created using OpenCV and NumPy.
+- **Shape Classes**: Polygons, circles, stars.
+- **Data Structure**:
+  - **Polygons**: Vertex coordinates.
+  - **Circles**: Center and radius.
+  - **Stars**: Vertex coordinates with angular constraints.
+- **Data Splits**:
+  - Training set: Parametric representations for model training.
+  - Validation set: For tuning and avoiding overfitting.
+  - Test set: For final evaluation of GAN performance.
+
+---
+
+## High-Level Solution
+
+### GAN Architecture
+
+- **Generator**:
+  - Input: Random noise.
+  - Output: Parametric representations (e.g., vertex coordinates).
+  - Goal: Generate valid parametric data for each shape class.
   
-- **Discriminator**: The discriminator will take the generated parametric representation and validate whether it forms a valid geometric shape. For instance, for polygons, it will check that the vertices are not collinear and that the shape's structure adheres to its geometric properties.
+- **Discriminator**:
+  - Input: Parametric data.
+  - Task: Validate if the generated parametric data represents a valid shape.
+  - Example: Ensure polygons have no collinear points.
 
-### Translation to Images:
-After generating the parametric representation, the shape will be drawn as an image using OpenCV or another visualization library. This process will allow for visual inspection of the generated shapes, but the GAN itself will operate directly on the parametric data.
+### Parametric to Image Translation
 
----
-
-## 5. Evaluation Metrics
-
-The performance of the GAN will be evaluated using the following metrics to assess the quality of the generated parametric shapes:
-
-1. **Geometric Correctness**:
-   - **Collinearity Check**: Ensure that polygons generated by the GAN have vertices that are not collinear, which is crucial for generating valid shapes.
-   - **Symmetry Check**: For shapes like circles and stars, ensure that symmetry is preserved in the generated parameters.
-
-2. **Structural Similarity Index (SSIM)**:
-   - After translating the parametric representations into images, SSIM can be used to compare the generated shapes with real shapes, measuring how perceptually similar they are.
-
-3. **Parameter-Based Metrics**:
-   - **Coordinate Distance**: Compare the distance between corresponding vertices of generated and real polygons.
-   - **Radius Deviation**: Measure the difference between generated and real radius values for circles.
-
-4. **Fréchet Inception Distance (FID)**:
-   - Measure how well the distribution of the generated parametric representations matches the distribution of real shape parameters.
-
-5. **Inception Score (IS)**:
-   - A modified version of the Inception Score can be used to evaluate how well a pre-trained classifier can categorize the generated shapes based on their parametric representations.
+- Generated parametric data will be **converted into images** for visual inspection.
+- Tools: OpenCV or other image processing libraries.
 
 ---
 
-## 6. What I Need to Learn
+## Evaluation Metrics
 
-To successfully complete this project, I will need to:
-- **Deepen my understanding of GAN architecture** for generating parametric data rather than images.
-- Learn how to **validate the generated geometric shapes** based on their parametric representation, ensuring they adhere to geometric rules (e.g., no collinear points).
-- **Explore new evaluation metrics** for parametric data generation, especially those focusing on the geometric validity of shapes.
+| **Metric**                | **What It Measures**                                                                                 | **How It’s Used**                                                                                         |
+|---------------------------|------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| Geometric Correctness      | Checks if shapes follow geometric rules (e.g., no collinear points in polygons, symmetry in circles)  | Evaluate if generated shapes adhere to geometric principles.                                                |
+| Structural Similarity Index (SSIM) | Measures perceptual similarity between generated and real shapes after translation to images    | Compare generated images to real shapes in terms of visual similarity.                                      |
+| Coordinate Distance        | Measures distance between vertices in generated and real polygons                                    | Ensure accuracy of generated polygon vertices.                                                              |
+| Radius Deviation           | Compares generated and real circle radii                                                             | Evaluate accuracy of generated circle parameters.                                                           |
+| Fréchet Inception Distance (FID) | Measures the distance between real and generated parametric data distributions                    | Compare parametric data distributions to assess shape diversity and quality.                                |
+| Inception Score (IS)       | Evaluates quality and diversity of parametric representations                                        | Ensure variety and correctness in generated shape categories.                                               |
 
 ---
 
-## 7. Conclusion
+## What I Need to Learn
 
-This project explores a novel application of GANs in generating parametric representations of geometric shapes. By focusing on the underlying structure of the shapes rather than generating raw images, this approach offers a deeper understanding of generative modeling and its potential for producing structured outputs. The goal is to train a GAN that can produce valid geometric shapes while learning how to parametrize these shapes in a meaningful way.
+- **GAN for parametric data**:
+  - How to generate parametric data instead of raw images.
+- **Geometric validation**:
+  - Implement checks to validate geometric properties (e.g., no collinear points, symmetry).
+- **Evaluation metrics**:
+  - Learn appropriate metrics for evaluating parametric data and their corresponding shapes.
+
+---
+
+## Conclusion
+
+- Focus: GAN generates parametric representations of geometric shapes, rather than images.
+- Advantages:
+  - Direct control over geometric properties.
+  - Deeper understanding of parametric data generation.
+- Goal: Train GAN to produce valid geometric shapes through parametric encoding.
+
