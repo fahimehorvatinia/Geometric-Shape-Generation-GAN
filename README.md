@@ -1,7 +1,7 @@
 # 🎨 Parametric Geometric Shape Generation Using GANs
 
 ## Introduction
-
+In this project, I aim to explore how a Generative Adversarial Network (GAN) can be used to generate geometric shapes by focusing on their underlying parametric structure.
 - 🏗️ **Goal**: Build a GAN that generates **parametrically encoded geometric shapes**.
 - 🔺 **Shapes**: Polygons, circles, stars.
 - 📝 **Output**: Coordinates of vertices, radii, or angular parameters instead of images.
@@ -79,9 +79,5 @@ After generating the parametric representation, the shape will be drawn as an im
 ---
 
 ## 🌟 Conclusion
+This project seeks to show how GANs can learn the rules behind geometric shapes, giving us a deeper understanding of how to create meaningful forms, not just images.- **Focus**: GAN generates parametric representations of geometric shapes, rather than images.
 
-- **Focus**: GAN generates parametric representations of geometric shapes, rather than images.
-- **Advantages**:
-  - Direct control over geometric properties.
-  - Deeper understanding of parametric data generation.
-- **Goal**: Train GAN to produce valid geometric shapes through parametric encoding.
