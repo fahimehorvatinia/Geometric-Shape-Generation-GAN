@@ -79,5 +79,6 @@ After generating the parametric representation, the shape will be drawn as an im
 ---
 
 ## 🌟 Conclusion
-This project seeks to show how GANs can learn the rules behind geometric shapes, giving us a deeper understanding of how to create meaningful forms, not just images.- **Focus**: GAN generates parametric representations of geometric shapes, rather than images.
+This project seeks to show how GANs can learn the rules behind geometric shapes, giving us a deeper understanding of how to create meaningful forms, not just images.
+- **Focus**: GAN generates parametric representations of geometric shapes, rather than images.
 
