@@ -1,3 +1,4 @@
+
 # 🎨 Parametric Geometric Shape Generation Using GANs
 
 ## Introduction
@@ -66,14 +67,26 @@ After generating the parametric representation, the shape will be drawn as an im
 
 ---
 
-## 🧠 What I Need to Learn
+## Part 2: Data Acquisition and Preparation
 
-**GAN for parametric data**:  
-  How to generate parametric data instead of raw images.  
-**Geometric validation**:  
-  Implement checks to validate geometric properties (e.g., no collinear points, symmetry).  
-**Evaluation metrics**:  
-  Learn appropriate metrics for evaluating parametric data and their corresponding shapes.
+#### 1. Source of Data
+The dataset was generated using a custom Python script with NumPy to create 3D parametric shapes. The shapes include Sphere, Tetrahedron, Cube, Cylinder, Cone, Star, Torus, Pyramid, and Octahedron. Each shape is represented as a 3D point cloud.
+
+- **Number of Samples**: 1000 point clouds per shape
+- **Total Samples**: 9000 point clouds
+
+#### 2. Differences Between Train and Validation Subsets
+- **Training Set**: Contains 60% (5400 point clouds) of the data.
+- **Validation Set**: Contains 20% (1800 point clouds) of the data, used for validating the model's performance.
+- **Test Set**: 20% (1800 point clouds) reserved for final evaluation.
+
+#### 3. Number of Distinct Objects/Subjects
+Each shape (e.g., Sphere, Tetrahedron) has 1000 samples, all generated with randomized parameters to ensure variability in each shape.
+
+#### 4. Characterization of Samples
+- **Resolution**: 3D point clouds with 1000 points per shape.
+- **Sensors Used**: N/A (synthetic data generated with Python).
+- **Illumination/Conditions**: N/A (synthetic data).
 
 ---
 
