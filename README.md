@@ -82,6 +82,34 @@ The dataset was generated using a custom Python script with NumPy to create 3D p
 
 #### 3. Number of Distinct Objects/Subjects
 Each shape (e.g., Sphere, Tetrahedron) has 1000 samples, all generated with randomized parameters to ensure variability in each shape.
+## 3D Shape Visualizations
+
+### Cone
+![Cone](Cone_View_1.png)
+
+### Cube
+![Cube](Cube_View_1.png)
+
+### Cylinder
+![Cylinder](Cylinder_View_1.png)
+
+### Octahedron
+![Octahedron](Octahedron_View_1.png)
+
+### Pyramid
+![Pyramid](Pyramid_View_1.png)
+
+### Sphere
+![Sphere](Sphere_View_1.png)
+
+### Star
+![Star](Star_View_1.png)
+
+### Tetrahedron
+![Tetrahedron](Tetrahedron_View_1.png)
+
+### Torus
+![Torus](Torus_View_1.png)
 
 #### 4. Characterization of Samples
 - **Resolution**: 3D point clouds with 1000 points per shape.
