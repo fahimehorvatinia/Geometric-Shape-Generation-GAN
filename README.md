@@ -85,31 +85,31 @@ Each shape (e.g., Sphere, Tetrahedron) has 1000 samples, all generated with rand
 ## 3D Shape Visualizations
 
 ### Cone
-![Cone](Cone_View_1.png)
+![Cone](dataset_examples/Cone_View_1.png)
 
 ### Cube
-![Cube](Cube_View_1.png)
+![Cube](dataset_examples/Cube_View_1.png)
 
 ### Cylinder
-![Cylinder](Cylinder_View_1.png)
+![Cylinder](dataset_examples/Cylinder_View_1.png)
 
 ### Octahedron
 ![Octahedron](Octahedron_View_1.png)
 
 ### Pyramid
-![Pyramid](Pyramid_View_1.png)
+![Pyramid](dataset_examples/Pyramid_View_1.png)
 
 ### Sphere
-![Sphere](Sphere_View_1.png)
+![Sphere](dataset_examples/Sphere_View_1.png)
 
 ### Star
-![Star](Star_View_1.png)
+![Star](dataset_examples/Star_View_1.png)
 
 ### Tetrahedron
-![Tetrahedron](Tetrahedron_View_1.png)
+![Tetrahedron](dataset_examples/Tetrahedron_View_1.png)
 
 ### Torus
-![Torus](Torus_View_1.png)
+![Torus](dataset_examples/Torus_View_1.png)
 
 #### 4. Characterization of Samples
 - **Resolution**: 3D point clouds with 1000 points per shape.
