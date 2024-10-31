@@ -117,6 +117,81 @@ Each shape (e.g., Sphere, Tetrahedron) has 1000 samples, all generated with rand
 - **Illumination/Conditions**: N/A (synthetic data).
 
 ---
+-- 
+## Part 3: Data Preprocessing, Segmentation, and Feature Extraction
+
+### Overview
+This section describes the data preprocessing, segmentation, and feature extraction methods applied to prepare 3D geometric shapes for GAN training. The GAN aims to generate realistic parametric representations of shapes, which requires high-quality, structured input data.
+
+### 1. Data Preprocessing
+
+#### Methods Applied
+- **Normalization**: Each 3D point cloud is scaled to a range of -1 to 1.
+- **Noise Reduction**: Gaussian filtering is applied to reduce noise, enhancing the clarity of each shape.
+
+#### Justification
+- **Normalization**: Essential for GAN stability, it ensures that input shapes have consistent scale, preventing GAN training instability due to size variations.
+- **Noise Reduction**: Minor noise in synthetic data can create artifacts, so Gaussian filtering helps ensure that the GAN trains on cleaner, more representative shapes.
+
+#### Example
+**Illustration 1**: Original shape vs. normalized and smoothed shape (add an image if possible).
+
+### 2. Segmentation
+
+#### Methods Applied
+- **Convex Hull Segmentation for Polygonal Shapes**: The Convex Hull is used to define boundary edges in polygonal shapes, such as tetrahedrons and cubes.
+- **Surface Segmentation for Curved Shapes**: K-means clustering is used to divide curved shapes, like spheres and cones, into distinct surface regions.
+
+#### Justification
+- **Convex Hull**: This method extracts essential boundary points for polygonal shapes, helping the GAN learn accurate shape constraints (e.g., no collinear points).
+- **K-means Clustering**: For curved shapes, clustering captures structural complexity by identifying unique regions, which guides the GAN in generating diverse, realistic 3D surfaces.
+
+#### Example
+**Illustration 2**: Convex hull edges of a cube and segmented clusters of a sphere (add an image if possible).
+
+### 3. Feature Extraction
+
+#### Methods Applied
+- **Edge Detection and Surface Normals**:
+  - **Edge Detection** for polygons: Extracts boundary points using Convex Hull to enforce geometric constraints.
+  - **Surface Normals** for curved shapes: Calculates surface normals for each cluster, enhancing the GAN’s understanding of 3D orientations.
+
+#### Justification
+- **Edge Detection**: Ensures that generated polygons respect geometric properties, such as edges and vertices, which are crucial for structural accuracy.
+- **Surface Normals**: For realistic representation, normals guide the GAN in producing surfaces with appropriate orientation, making shapes like spheres and cones more realistic.
+
+#### Example
+**Illustration 3**: Edge detection on polygons and normal vectors on curved shapes (add an image if possible).
+
+### 4. Instructions for Running the Code
+
+1. **Preprocess Data**:
+    ```bash
+    python preprocessing.py
+    ```
+    This will create normalized and noise-reduced point clouds in `3D_Shape_Dataset/Preprocessed/`.
+
+2. **Segment Data**:
+    ```bash
+    python segmentation.py
+    ```
+    This will generate segmented data in `3D_Shape_Dataset/Segmented/`, using Convex Hull or K-means, depending on the shape.
+
+3. **Extract Features**:
+    ```bash
+    python feature_extraction.py
+    ```
+    Extracted features, including edges and normals, are saved in `3D_Shape_Dataset/Features/`.
+
+### 5. Individual Contributions
+*If you’re working in a team, provide a summary of each team member's contributions here.*
+
+---
+
+This section should cover all the required elements, including method listings, justifications, examples, and code instructions. Once added, you can push the updated `README.md` to your repository. Let me know if you need further adjustments!
+
+
+---
 
 ## 🌟 Conclusion
 This project seeks to show how GANs can learn the rules behind geometric shapes, giving us a deeper understanding of how to create meaningful forms, not just images.  
