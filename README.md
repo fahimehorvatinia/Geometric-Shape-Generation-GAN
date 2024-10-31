@@ -183,12 +183,6 @@ This section describes the data preprocessing, segmentation, and feature extract
     ```
     Extracted features, including edges and normals, are saved in `3D_Shape_Dataset/Features/`.
 
-### 5. Individual Contributions
-*If you’re working in a team, provide a summary of each team member's contributions here.*
-
----
-
-This section should cover all the required elements, including method listings, justifications, examples, and code instructions. Once added, you can push the updated `README.md` to your repository. Let me know if you need further adjustments!
 
 
 ---
