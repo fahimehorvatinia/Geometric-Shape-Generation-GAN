@@ -117,75 +117,87 @@ Each shape (e.g., Sphere, Tetrahedron) has 1000 samples, all generated with rand
 - **Illumination/Conditions**: N/A (synthetic data).
 
 ---
--- 
 ## Part 3: Data Preprocessing, Segmentation, and Feature Extraction
 
 ### Overview
-This section describes the data preprocessing, segmentation, and feature extraction methods applied to prepare 3D geometric shapes for GAN training. The GAN aims to generate realistic parametric representations of shapes, which requires high-quality, structured input data.
+This section describes the data preprocessing, segmentation, and feature extraction methods applied to prepare 3D geometric shapes for GAN training in the "Geometric-Shape-Generation-GAN" project. The aim is to provide high-quality, structured input data for generating realistic parametric representations of shapes.
 
 ### 1. Data Preprocessing
 
 #### Methods Applied
-- **Normalization**: Each 3D point cloud is scaled to a range of -1 to 1.
-- **Noise Reduction**: Gaussian filtering is applied to reduce noise, enhancing the clarity of each shape.
+- **Normalization**: Each 3D point cloud is scaled to fit within a standard range of -1 to 1.
+- **Noise Reduction**: Gaussian filtering is applied to reduce noise, which enhances the clarity of each shape and minimizes artifacts.
 
 #### Justification
-- **Normalization**: Essential for GAN stability, it ensures that input shapes have consistent scale, preventing GAN training instability due to size variations.
-- **Noise Reduction**: Minor noise in synthetic data can create artifacts, so Gaussian filtering helps ensure that the GAN trains on cleaner, more representative shapes.
+- **Normalization**: Essential for GAN stability, this ensures that input shapes have consistent scales, reducing issues with size variation during training.
+- **Noise Reduction**: Reduces artifacts that could distort the GAN’s understanding of boundaries, providing cleaner data for training.
 
-#### Example
-**Illustration 1**: Original shape vs. normalized and smoothed shape (add an image if possible).
+#### Example Illustration
+**Original vs. Preprocessed Shape**  
+![Original Shape](illustrations/original_cone.png)  
+![Preprocessed Shape](illustrations/preprocessed_cone.png)
+
+---
 
 ### 2. Segmentation
 
 #### Methods Applied
-- **Convex Hull Segmentation for Polygonal Shapes**: The Convex Hull is used to define boundary edges in polygonal shapes, such as tetrahedrons and cubes.
-- **Surface Segmentation for Curved Shapes**: K-means clustering is used to divide curved shapes, like spheres and cones, into distinct surface regions.
+- **Convex Hull Segmentation for Polygonal Shapes**: Convex Hull is used to extract boundary edges for shapes like tetrahedrons and cubes.
+- **Surface Segmentation for Curved Shapes**: K-means clustering is applied to divide curved shapes (e.g., spheres, cones) into distinct regions.
 
 #### Justification
-- **Convex Hull**: This method extracts essential boundary points for polygonal shapes, helping the GAN learn accurate shape constraints (e.g., no collinear points).
-- **K-means Clustering**: For curved shapes, clustering captures structural complexity by identifying unique regions, which guides the GAN in generating diverse, realistic 3D surfaces.
+- **Convex Hull**: By identifying boundary points, Convex Hull segmentation helps the GAN learn essential geometric constraints, such as edge boundaries and vertices.
+- **K-means Clustering**: Enables clustering of curved surfaces, helping the GAN capture distinct surface regions and structural complexity.
 
-#### Example
-**Illustration 2**: Convex hull edges of a cube and segmented clusters of a sphere (add an image if possible).
+#### Example Illustration
+**Segmented Shape Example**  
+![Convex Hull for Polygon](illustrations/segmented_cone_cluster1.png)
+
+---
 
 ### 3. Feature Extraction
 
 #### Methods Applied
 - **Edge Detection and Surface Normals**:
-  - **Edge Detection** for polygons: Extracts boundary points using Convex Hull to enforce geometric constraints.
-  - **Surface Normals** for curved shapes: Calculates surface normals for each cluster, enhancing the GAN’s understanding of 3D orientations.
+  - **Edge Detection** for polygonal shapes: Uses Convex Hull to identify and emphasize edges.
+  - **Surface Normals** for curved shapes: Calculates normals for each region, helping the GAN understand the 3D orientation.
 
 #### Justification
 - **Edge Detection**: Ensures that generated polygons respect geometric properties, such as edges and vertices, which are crucial for structural accuracy.
-- **Surface Normals**: For realistic representation, normals guide the GAN in producing surfaces with appropriate orientation, making shapes like spheres and cones more realistic.
+- **Surface Normals**: For realistic representations, normals guide the GAN in producing surfaces with the correct orientation.
 
-#### Example
-**Illustration 3**: Edge detection on polygons and normal vectors on curved shapes (add an image if possible).
+#### Example Illustration
+**Feature Extraction - Edges and Normals**  
+![Edges](illustrations/cone_edges.png)  
+![Normals](illustrations/cone_normals.png)
 
-### 4. Instructions for Running the Code
+---
 
-1. **Preprocess Data**:
+### Running the Code
+
+Each step of the process is encapsulated in separate Python scripts. To execute each step, follow the commands below.
+
+1. **Data Preprocessing**:
     ```bash
     python preprocessing.py
     ```
     This will create normalized and noise-reduced point clouds in `3D_Shape_Dataset/Preprocessed/`.
 
-2. **Segment Data**:
+2. **Segmentation**:
     ```bash
     python segmentation.py
     ```
-    This will generate segmented data in `3D_Shape_Dataset/Segmented/`, using Convex Hull or K-means, depending on the shape.
+    This will generate segmented data in `3D_Shape_Dataset/Segmented/`, using Convex Hull for polygons and K-means clustering for curved shapes.
 
-3. **Extract Features**:
+3. **Feature Extraction**:
     ```bash
     python feature_extraction.py
     ```
     Extracted features, including edges and normals, are saved in `3D_Shape_Dataset/Features/`.
 
 
+--- 
 
----
 
 ## 🌟 Conclusion
 This project seeks to show how GANs can learn the rules behind geometric shapes, giving us a deeper understanding of how to create meaningful forms, not just images.  
