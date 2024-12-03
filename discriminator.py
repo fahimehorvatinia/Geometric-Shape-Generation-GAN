@@ -1,13 +1,16 @@
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LeakyReLU, Dropout
+# discriminator.py
+import torch
+import torch.nn as nn
 
-def build_discriminator(input_dim):
-    model = Sequential([
-        Dense(256, input_dim=input_dim),
-        LeakyReLU(alpha=0.2),
-        Dropout(0.3),
-        Dense(128),
-        LeakyReLU(alpha=0.2),
-        Dense(1, activation='sigmoid')
-    ])
-    return model
+class Discriminator(nn.Module):
+    def __init__(self):
+        super(Discriminator, self).__init__()
+        self.fc1 = nn.Linear(100, 128)  # Adjust input dimensions as needed
+        self.fc2 = nn.Linear(128, 256)
+        self.fc3 = nn.Linear(256, 1)  # Output layer, probability for classification
+
+    def forward(self, x):
+        x = torch.relu(self.fc1(x))
+        x = torch.relu(self.fc2(x))
+        x = torch.sigmoid(self.fc3(x))  # Output as probability
+        return x
