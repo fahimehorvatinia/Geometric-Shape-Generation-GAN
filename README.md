@@ -202,3 +202,6 @@ Each step of the process is encapsulated in separate Python scripts. To execute 
 ## 🌟 Conclusion
 This project seeks to show how GANs can learn the rules behind geometric shapes, giving us a deeper understanding of how to create meaningful forms, not just images.  
 **Focus**: GAN generates parametric representations of geometric shapes, rather than images.
+
+# New Section
+Add your new content here...
