@@ -235,7 +235,7 @@ The results of training show that the model is able to generate parametric repre
 
 #### Example Generated Shape:
 - **Cube Shape**: 
-  ![Cube Shape](generated_shapes/cube_1.png)
+  ![Cube Shape](generated_point_cloud.png)
 
 ### Why This Approach was Chosen
 A **Generative Adversarial Network (GAN)** was chosen for this task because it allows for the generation of highly complex, high-dimensional data like 3D geometric shapes. Unlike traditional image generation models, GANs learn directly from the parametric representation of shapes, ensuring that the generated data respects geometric properties like non-collinearity in polygons or correct radii in circles.
