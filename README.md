@@ -198,7 +198,6 @@ Each step of the process is encapsulated in separate Python scripts. To execute 
 
 --- 
 
-
 ## Part 4: GAN Model Architecture and Training
 
 ### Generator Model
@@ -259,13 +258,22 @@ On the training set, the model achieved an accuracy of **96%**, while on the val
 - **F-measure**: The F-measure was calculated for each class to evaluate both precision and recall together.
 - **ROC Curve**: The ROC curve shows the trade-off between true positive and false positive rates, which indicates the effectiveness of the classifier.
 
-### 3. Short Commentary on Accuracy and Ideas for Improvements
-The model exhibits high accuracy on the training set, but the validation accuracy is slightly lower, which could indicate overfitting. To address this, several improvements can be considered:
-- **Regularization**: Implementing dropout or weight decay could help reduce overfitting.
-- **Data Augmentation**: Augmenting the training data with transformations like random rotations and scaling could improve generalization by providing more varied examples.
-- **Cross-Validation**: Using k-fold cross-validation would help ensure that the model performs well on different subsets of the data and improve its generalization.
+#### Confusion Matrix:
+The confusion matrix for the validation dataset is as follows:
 
-Before final testing, I plan to implement **dropout** layers and **adjust the learning rate** to improve generalization.
+![Confusion Matrix](confusion_matrix.png)
+
+#### Observations:
+- The model performed excellently across all shape categories, with **no misclassifications** for most shapes (Sphere, Cone, Pyramid, Cube, Cylinder).
+- The accuracy is nearly perfect on the training set, but the validation accuracy shows a slight decrease, suggesting potential **overfitting**.
+
+### 3. Short Commentary on Accuracy and Ideas for Improvements
+The model exhibits high accuracy on the training set, but the validation accuracy is slightly lower, which could indicate **overfitting**. To address this, several improvements can be considered:
+- **Regularization**: Implementing **dropout layers** or **weight decay** could help reduce overfitting by forcing the model to generalize better.
+- **Data Augmentation**: Augmenting the training data with transformations like **random rotations**, **scaling**, and **shifting** could provide more varied examples, improving the generalization ability of the model.
+- **Cross-Validation**: Using **k-fold cross-validation** would help ensure that the model performs well on different subsets of the data and improve its generalization. This would also give a better estimate of the model's performance on unseen data.
+  
+Before final testing, I plan to implement **dropout layers**, **adjust the learning rate**, and **augment the training data** to improve generalization and address potential overfitting.
 
 ### 4. Individual Contributions
 - **Fahimeh**: Implemented data preprocessing, model evaluation, and writing the report.
