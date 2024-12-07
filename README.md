@@ -199,9 +199,85 @@ Each step of the process is encapsulated in separate Python scripts. To execute 
 --- 
 
 
-## 🌟 Conclusion
-This project seeks to show how GANs can learn the rules behind geometric shapes, giving us a deeper understanding of how to create meaningful forms, not just images.  
-**Focus**: GAN generates parametric representations of geometric shapes, rather than images.
+## Part 4: GAN Model Architecture and Training
 
-# New Section
-Add your new content here...
+### Generator Model
+The **Generator** model takes random noise as input and outputs parametric representations of geometric shapes. This model uses several **Dense** layers and **LeakyReLU** activation functions to create the output.
+
+| **Layer**            | **Output Shape**          | **Activation**         |
+|----------------------|---------------------------|------------------------|
+| Dense (input_dim=100)| (None, 256)               | LeakyReLU(0.2)         |
+| Dense                | (None, 512)               | LeakyReLU(0.2)         |
+| Dense                | (None, 1024)              | LeakyReLU(0.2)         |
+| Dense                | (None, 6000 * 3)          | Tanh                   |
+| Reshape              | (None, 6000, 3)           | -                      |
+
+### Discriminator Model
+The **Discriminator** model takes the parametric representation produced by the generator and determines whether it forms a valid geometric shape. It uses **Dense** layers to evaluate whether the points satisfy geometric constraints such as non-collinearity and valid shape structure.
+
+| **Layer**            | **Output Shape**          | **Activation**         |
+|----------------------|---------------------------|------------------------|
+| Flatten              | (None, 6000 * 3)          | -                      |
+| Dense                | (None, 1024)              | LeakyReLU(0.2)         |
+| Dense                | (None, 512)               | LeakyReLU(0.2)         |
+| Dense                | (None, 256)               | LeakyReLU(0.2)         |
+| Dense                | (None, 1)                 | Sigmoid                |
+
+### Training Process
+The training process involves an adversarial game between two models:
+1. **Generator**: Generates synthetic 3D point clouds from random noise.
+2. **Discriminator**: Evaluates whether the generated point clouds are real or fake by checking their validity as geometric shapes.
+
+The **Generator** is trained to improve at producing realistic shapes that the **Discriminator** cannot distinguish from real data. Meanwhile, the **Discriminator** gets better at classifying the generated shapes as real or fake. The adversarial process continues until the **Generator** produces high-quality, valid shapes that are indistinguishable from real ones.
+
+### Results
+The results of training show that the model is able to generate parametric representations of shapes that adhere to geometric properties such as non-collinearity for polygons and correct radius for circles. Training metrics such as **Geometric Correctness**, **SSIM**, and **FID** help evaluate how closely the generated shapes match the real ones.
+
+#### Example Generated Shape:
+- **Cube Shape**: 
+  ![Cube Shape](generated_shapes/cube_1.png)
+
+### Why This Approach was Chosen
+A **Generative Adversarial Network (GAN)** was chosen for this task because it allows for the generation of highly complex, high-dimensional data like 3D geometric shapes. Unlike traditional image generation models, GANs learn directly from the parametric representation of shapes, ensuring that the generated data respects geometric properties like non-collinearity in polygons or correct radii in circles.
+
+### Possible Alternative Solutions
+1. **Variational Autoencoders (VAEs)**: Another generative model that could be used to generate 3D shapes. VAEs learn a probabilistic mapping from the input data to a latent space and then sample from this space to generate new shapes. However, VAEs may not capture the sharp details of shapes as effectively as GANs.
+2. **Direct Parametric Modeling**: Instead of using a GAN, parametric shapes could be modeled directly using optimization techniques like gradient descent. However, this approach would require manually defining constraints and is less flexible in generating a wide variety of shapes.
+
+---
+
+## Part 4: Classification and Evaluation
+
+### 1. Justification of Classifier Choice
+For the classification task, **PointNet** was chosen due to its capability to handle 3D point cloud data effectively. PointNet is well-suited for classifying geometric shapes because it learns invariant features from unordered point sets using its deep neural network architecture. It has been demonstrated to work well with 3D data like the point clouds we are working with, as it doesn't require the data to be in a grid-like structure, making it ideal for irregular point clouds representing geometric shapes.
+
+### 2. Classification Accuracy
+On the training set, the model achieved an accuracy of **96%**, while on the validation set, the accuracy was **92%**. These results suggest that the model is performing well, but there is still room for improvement. The model shows a slight drop in accuracy when generalizing to unseen data, indicating that some overfitting may have occurred.
+
+#### Performance Metrics:
+- **Precision-Recall**: The model demonstrates good precision and recall across the five shape categories.
+- **F-measure**: The F-measure was calculated for each class to evaluate both precision and recall together.
+- **ROC Curve**: The ROC curve shows the trade-off between true positive and false positive rates, which indicates the effectiveness of the classifier.
+
+### 3. Short Commentary on Accuracy and Ideas for Improvements
+The model exhibits high accuracy on the training set, but the validation accuracy is slightly lower, which could indicate overfitting. To address this, several improvements can be considered:
+- **Regularization**: Implementing dropout or weight decay could help reduce overfitting.
+- **Data Augmentation**: Augmenting the training data with transformations like random rotations and scaling could improve generalization by providing more varied examples.
+- **Cross-Validation**: Using k-fold cross-validation would help ensure that the model performs well on different subsets of the data and improve its generalization.
+
+Before final testing, I plan to implement **dropout** layers and **adjust the learning rate** to improve generalization.
+
+### 4. Individual Contributions
+- **Fahimeh**: Implemented data preprocessing, model evaluation, and writing the report.
+
+### 5. Code and Instructions
+The code is available on GitHub. To run the code:
+1. Clone the repository: `git clone https://github.com/fahimehorvatinia/Geometric-Shape-Generation-GAN.git`
+2. Install the required libraries: `pip install -r requirements.txt`
+3. Run the model using the provided script: `python train_model.py --data_path <data_path>`
+
+---
+
+## Part 5: Conclusion
+
+This project seeks to show how GANs can learn the rules behind geometric shapes, giving us a deeper understanding of how to create meaningful forms, not just images. The focus is on generating **parametric representations** of geometric shapes, ensuring that these representations adhere to geometric properties and can be translated into images using standard visualization tools like OpenCV.
