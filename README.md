@@ -247,16 +247,15 @@ A **Generative Adversarial Network (GAN)** was chosen for this task because it a
 
 ## Part 4: Classification and Evaluation
 
+After training the GAN, we feed the output to our own designed classifier (PointNET) to perform the classification task (see that the result is reasonable or not.
+
 ### 1. Justification of Classifier Choice
 For the classification task, **PointNet** was chosen due to its capability to handle 3D point cloud data effectively. PointNet is well-suited for classifying geometric shapes because it learns invariant features from unordered point sets using its deep neural network architecture. It has been demonstrated to work well with 3D data like the point clouds we are working with, as it doesn't require the data to be in a grid-like structure, making it ideal for irregular point clouds representing geometric shapes.
 
 ### 2. Classification Accuracy
 On the training set, the model achieved an accuracy of **96%**, while on the validation set, the accuracy was **92%**. These results suggest that the model is performing well, but there is still room for improvement. The model shows a slight drop in accuracy when generalizing to unseen data, indicating that some overfitting may have occurred.
 
-#### Performance Metrics:
-- **Precision-Recall**: The model demonstrates good precision and recall across the five shape categories.
-- **F-measure**: The F-measure was calculated for each class to evaluate both precision and recall together.
-- **ROC Curve**: The ROC curve shows the trade-off between true positive and false positive rates, which indicates the effectiveness of the classifier.
+
 
 #### Confusion Matrix:
 The confusion matrix for the validation dataset is as follows:
