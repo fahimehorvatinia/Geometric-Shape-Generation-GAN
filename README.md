@@ -280,8 +280,7 @@ Before final testing, I plan to implement **dropout layers**, **adjust the learn
 ### 5. Code and Instructions
 The code is available on GitHub. To run the code:
 1. Clone the repository: `git clone https://github.com/fahimehorvatinia/Geometric-Shape-Generation-GAN.git`
-2. Install the required libraries: `pip install -r requirements.txt`
-3. Run the model using the provided script: `python train_model.py --data_path <data_path>`
+2. Run the `GAN.ipynb` file step by step.
 
 ---
 
