@@ -333,7 +333,7 @@ To test the final implementation:
     ```bash
     git clone https://github.com/fahimehorvatinia/Geometric-Shape-Generation-GAN.git
     ```
-2. Run the **`update5_test_evaluation.py`** script:
+2. Run the **`update5.ipynb`** Step by step:
     ```bash
     run Update5.ipynb
     ```
