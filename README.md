@@ -284,6 +284,68 @@ The code is available on GitHub. To run the code:
 
 ---
 
-## Part 5: Conclusion
+---
+
+## Update 5: Final Evaluation on Test Data
+
+### 1. Test Dataset Description
+The test dataset was created by applying transformations to the existing dataset, including random rotations, scaling, and translations. The dataset contains:
+- **Size**: 1,800 samples.
+- **Variations**: These transformations introduce new orientations and variations for each shape class, ensuring that the test set is significantly different from the training and validation sets.
+- **Purpose**: To evaluate the model's generalization ability on unseen data with variations not present during training or validation.
+
+### 2. Classification Accuracy on Test Data
+- **Accuracy Achieved**: The final classification accuracy on the test set using the trained PointNet model was **85%**.
+- **Comparison**: This is lower than the training (96%) and validation (92%) accuracies, indicating a performance drop due to unseen variations in the test set.
+
+### 3. Observations and Proposed Improvements
+#### Observations:
+- The **GAN-generated shapes** showed a tendency toward **mode collapse**, often producing similar shapes (e.g., cubes).
+- The **PointNet classifier** struggled with highly rotated shapes or noisy variations in the test set.
+
+#### Proposed Improvements:
+1. **Diversity Loss in GAN**:
+   - Add a diversity loss term to the GAN generator’s loss function to encourage output variety:
+     \[
+     \mathcal{L}_{div} = \| G(z_i) - G(z_j) \|_2^2 \quad \text{for } z_i \neq z_j
+     \]
+   - Penalizes the generator for producing similar outputs for different latent vectors.
+2. **Data Augmentation**:
+   - Apply random transformations (rotations, scaling, etc.) to training data to improve the GAN's ability to generalize.
+3. **WGAN Training**:
+   - Implement Wasserstein GAN with Gradient Penalty (WGAN-GP) for stable training:
+     \[
+     \mathcal{L}_D = \mathbb{E}[D(x)] - \mathbb{E}[D(G(z))] + \lambda \mathbb{E}[(\|\nabla D(\hat{x})\|_2 - 1)^2]
+     \]
+   - Improves the quality of generated samples and reduces mode collapse.
+
+---
+
+### 4. Visualization and Results
+Below are examples of **15 generated 3D point clouds** evaluated by the PointNet classifier. Each generated shape is displayed with its predicted class and confidence score.
+
+![Generated Shape 1](generated_shape_1.png)
+![Generated Shape 2](generated_shape_2.png)
+
+### 5. Code and Instructions
+To test the final implementation:
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/fahimehorvatinia/Geometric-Shape-Generation-GAN.git
+    ```
+2. Run the **`update5_test_evaluation.py`** script:
+    ```bash
+    python update5_test_evaluation.py
+    ```
+3. The script will generate shapes, classify them, and display the results.
+
+---
+
+### 6. Short Presentation Video
+A short presentation summarizing the project is available at the following link:
+[Project Presentation Video](https://github.com/fahimehorvatinia/Geometric-Shape-Generation-GAN/video.mp4)
+
+---
+## Conclusion
 
 This project seeks to show how GANs can learn the rules behind geometric shapes, giving us a deeper understanding of how to create meaningful forms, not just images. The focus is on generating **parametric representations** of geometric shapes, ensuring that these representations adhere to geometric properties and can be translated into images using standard visualization tools like OpenCV.
