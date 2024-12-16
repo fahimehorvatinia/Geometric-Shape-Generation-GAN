@@ -322,7 +322,7 @@ The test dataset was created by applying transformations to the existing dataset
 ---
 
 ### 4. Visualization and Results
-Below are examples of **15 generated 3D point clouds** evaluated by the PointNet classifier. Each generated shape is displayed with its predicted class and confidence score.
+Below are examples of **5 generated 3D point clouds** evaluated by the PointNet classifier. Each generated shape is displayed with its predicted class and confidence score.
 
 ![Generated Shape](generated_shape.png)
 
