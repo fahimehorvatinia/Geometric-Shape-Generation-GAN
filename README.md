@@ -335,7 +335,7 @@ To test the final implementation:
     ```
 2. Run the **`update5_test_evaluation.py`** script:
     ```bash
-    python update5_test_evaluation.py
+    run Update5.ipynb
     ```
 3. The script will generate shapes, classify them, and display the results.
 
