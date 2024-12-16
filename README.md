@@ -343,7 +343,7 @@ To test the final implementation:
 
 ### 6. Short Presentation Video
 A short presentation summarizing the project is available at the following link:
-[Project Presentation Video](https://github.com/fahimehorvatinia/Geometric-Shape-Generation-GAN/presentation.mp4)
+[Project Presentation Video](https://github.com/fahimehorvatinia/Geometric-Shape-Generation-GAN/Presentation.mp4)
 
 ---
 ## Conclusion
